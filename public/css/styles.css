@@ -43,6 +43,7 @@ footer {
 
 .result input {
   display: flex;
+  font-size: 15px;
   text-align: center;
 }
 
