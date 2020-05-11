@@ -15,34 +15,7 @@ $(document).ready(function () {
 });
 
 function getTemperature() {
-  const region = {
-    'Amazonas': 'AM',
-    'Roraima': 'RR',
-    'Amapa': 'AP',
-    'Para': 'PA',
-    'Tocantins': 'TO',
-    'Rondonia': 'RO',
-    'Acre': 'AC',
-    'Maranhao': 'MA',
-    'Piaui': 'PI',
-    'Ceara': 'CE',
-    'Rio Grande do Norte': 'RN',
-    'Pernambuco': 'PE',
-    'Paraiba': 'PB',
-    'Sergipe': 'SE',
-    'Alagoas': 'AL',
-    'Bahia': 'BA',
-    'Mato Grosso': 'MT',
-    'Mato Grosso do Sul': 'MS',
-    'Goias': 'GO',
-    'Sao Paulo': 'SP',
-    'Rio de Janeiro': 'RJ',
-    'Espírito Santo': 'ES',
-    'Minas Gerais': 'MG',
-    'Parana': 'PR',
-    'Rio Grande do Sul': 'RS',
-    'Santa Catarina': 'SC'
-  }
+
   // Get city name
   let city = $('input[name="city"]').val();
 
