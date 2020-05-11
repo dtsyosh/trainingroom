@@ -47,7 +47,7 @@ function getTemperature() {
   let city = $('input[name="city"]').val();
 
   // Append in API's url
-  let url = `http://api.weatherstack.com/current?access_key=668ac68398767c928ef7d65985b6b2cd&query=${city}`;
+  let url = `https://api.weatherstack.com/current?access_key=668ac68398767c928ef7d65985b6b2cd&query=${city}`;
 
   // Make de AJAX call and get the data
   $.get(url, function (response) {
