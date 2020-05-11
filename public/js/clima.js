@@ -15,6 +15,10 @@ function getTemperature() {
   // Append in API's url
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5e1c01ecb9b61acc1e75d513bfd9aef8&lang=pt_br&units=metric`;
 
+  Swal.fire({
+    title: 'Carregando',
+    text: 'Buscando cidade...'
+  })
   Swal.showLoading()
   // Make de AJAX call and get the data
   $.get(url, function (response) {

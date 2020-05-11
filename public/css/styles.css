@@ -27,6 +27,8 @@ header a, footer a {
 }
 
 footer {
+  align-self: center;
+  font-size: 12px;
   color: #888888;
   border-top: 1px solid #eeeeee;
   margin-top: 16px;
