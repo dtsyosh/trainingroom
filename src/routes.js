@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const climaUtils = require('./utils/clima')
+const climaRouter = require('./routes/climaRoutes')
 
 
 
@@ -12,24 +12,9 @@ router.get('/', (req, res) => {
   });
 })
 
+router.use('/clima', climaRouter);
 
-router.get('/clima', (req, res) => {
-  res.render('./clima/index', {
-    title: "Clima",
-    clima: "is-active"
-  })
-})
 
-router.get('/clima/search', async (req, res) => {
-  const { lat, lon, city } = req.query;
-  let response = {}
-  if (city)
-    response = await climaUtils.getTemperature(...Array(2), city)
-  else
-    response = await climaUtils.getTemperature(lat, lon)
-
-  res.send(response)
-})
 
 
 
