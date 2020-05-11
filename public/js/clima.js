@@ -18,10 +18,10 @@ function getTemperature(lat = null, lon = null) {
   let city = $('input[name="city"]').val();
 
   // Append in API's url
-  let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=5e1c01ecb9b61acc1e75d513bfd9aef8&lang=pt_br&units=metric`;
+  let url = `/clima/search?city=${city}`;
 
   if (lat && lon) {
-    url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=5e1c01ecb9b61acc1e75d513bfd9aef8&lang=pt_br&units=metric`;
+    url = `/clima/search?lat=${lat}&lon=${lon}`;
   }
 
   Swal.fire({
