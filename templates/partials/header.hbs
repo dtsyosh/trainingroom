@@ -1,5 +1,40 @@
-<header>
-  <h1>{{ title }}</h1>
-  <a href="/">Home</a>
-  <a href="/clima">Clima</a>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>{{ title }}</h1>
+    <div class="tabs">
+      <ul>
+        <li class={{ home }}>
+          <a href="/">
+            <span class="icon is-small">
+              <i class="fas fa-home" aria-hidden="true"></i>
+            </span>
+            <span>
+              Home
+            </span>
+          </a>
+        </li>
+        <li class={{ clima }}>
+          <a href="/clima">
+            <span class="icon is-small">
+              <i class="fas fa-cloud" aria-hidden="true"></i>
+            </span>
+            <span>
+              Clima
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="content">
