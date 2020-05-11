@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title }}</title>
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  {{>header}}
+  <div class="content">
+    <div class="form-group">
+      <label for="city">Cidade: </label>
+      <input type="text" name="city">
+      <button>Enviar</button>
+    </div>
+
+    <div class="result">
+      <div class="form-group">
+        <label for="city">Cidade: </label>
+        <input type="text" name="city_result" disabled>
+      </div>
+      <div class="form-group">
+        <label for="city">Temperatura: </label>
+        <input type="text" name="temperature_result" disabled>
+      </div>
+      <div class="form-group">
+        <label for="city">Sensação Térmica: </label>
+        <input type="text" name="feelslike_result" disabled>
+      </div>
+      <div class="form-group">
+        <label for="city">% Chuva: </label>
+        <input type="text" name="precip_result" disabled>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal"></div>
+  {{>footer}}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="js/clima.js"></script>
+</body>
+
+</html>
