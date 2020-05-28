@@ -49,11 +49,29 @@ footer {
 }
 
 #map {
+  margin-top: 13px;
   height: 100%;
   border: 1px solid #333333;
+  border-radius: 3px;
 }
 
 .bioma {
   text-align: center;
   font-size: 10px;
+}
+
+.map-subtitle {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding-top: 3px;
+  align-items: center;
+}
+
+.map-subtitle .columns {
+  padding-left: 20px;
+  /* padding-top: 5px; */
+}
+
+.map-subtitle .column {
+  padding-bottom: 3px;
 }
