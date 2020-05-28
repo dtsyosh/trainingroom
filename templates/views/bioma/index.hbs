@@ -1,0 +1,81 @@
+{{>header}}
+
+<div class="columns is-centered">
+  <div class="column is-half">
+    <div class="control">
+      <label class="label" for="city">Coordenadas (DMS)</label>
+    </div>
+    <div class="field has-addons">
+      <div class="control">
+        <input class="input" type="text" name="coordinates" placeholder="ex. 20°30' S 43°07' W">
+      </div>
+      <div class="control">
+        <button class="button is-info">Procurar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="result columns is-centered">
+
+  <div class="column is-half">
+    <div class="field">
+      <label class="label is-small" for="city">Estado: </label>
+      <input class="input" type="text" name="state_result" disabled>
+    </div>
+    <div class="field">
+      <label class="label is-small" for="city">Municipio: </label>
+      <input class="input" type="text" name="city_result" disabled>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #A8FF00"></i>
+          Amazônia
+        </span>
+      </div>
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #FFFFA8"></i>
+          Caatinga
+        </span>
+      </div>
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #FFC0A8"></i>
+          Cerrado
+        </span>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #D6FFA8"></i>
+          Mata Atlântica
+        </span>
+      </div>
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #FFF0D5"></i>
+          Pampa
+        </span>
+      </div>
+      <div class="column">
+        <span class="bioma">
+          <i class="fas fa-circle" style="color: #FFE5FF"></i>
+          Pantanal
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="column is-half">
+    <div id="map"></div>
+
+  </div>
+</div>
+
+<script defer type="text/javascript" src="https://js.arcgis.com/4.5/"></script>
+<script defer src="js/bioma.js"></script>
+
+{{>footer}}

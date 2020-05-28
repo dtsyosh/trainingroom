@@ -19,7 +19,8 @@ header h1 {
   font-size: 50px;
 }
 
-header a, footer a {
+header a,
+footer a {
   color: #555555;
   margin-right: 16px;
 }
@@ -45,4 +46,14 @@ footer {
   display: flex;
   font-size: 15px;
   text-align: center;
+}
+
+#map {
+  height: 100%;
+  border: 1px solid #333333;
+}
+
+.bioma {
+  text-align: center;
+  font-size: 10px;
 }
