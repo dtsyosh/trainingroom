@@ -47,6 +47,7 @@ module.exports = {
         state: initials[state],
         lat,
         lon,
+        data,
       };
     } catch (error) {
       console.log(error);
