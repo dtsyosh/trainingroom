@@ -36,6 +36,18 @@ function isUTM(coordinates) {
   return coordinates.split('S').length == 1 ? true : false;
 }
 
+function fixDMS(coordinates) {
+  let fixedDMS = coordinates.replace('S', 'S ');
+  fixedDMS = fixedDMS.replace(' °', '°');
+  // fixedDMS = fixedDMS.replace('°', '° ');
+  // fixedDMS = fixedDMS.replace('º', 'º ');
+  fixedDMS = fixedDMS.replace(' º', 'º');
+  fixedDMS = fixedDMS.replace(" '", "'");
+
+  console.log(fixedDMS);
+  return fixedDMS;
+}
+
 module.exports = {
   async getData(coordinates) {
     try {
@@ -52,7 +64,7 @@ module.exports = {
         const wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84  +no_defs';
         [lon, lat] = proj4(utm, wgs84, coordinatesFormatted);
       } else {
-        const result = parseDMS(coordinates);
+        const result = parseDMS(fixDMS(coordinates));
         lat = result.lat;
         lon = result.lon;
       }
