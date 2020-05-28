@@ -16,7 +16,8 @@
     "bulma": "^0.8.2",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
-    "parse-dms": "^0.0.3"
+    "parse-dms": "^0.0.3",
+    "proj4": "^2.6.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.3"
