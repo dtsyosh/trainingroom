@@ -21,6 +21,8 @@ function getData(coordinates) {
     $('input[name="city_result"]').val(response.city);
     $('input[name="state_result"]').val(response.state);
     // $('input[name="biome_result"]').val(response.biome);
+
+    $('#map').empty();
     const { lat, lon, data } = response;
     drawMap(lat, lon);
     Swal.close();
