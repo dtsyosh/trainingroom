@@ -26,17 +26,13 @@ function getData(coordinates) {
     const { lat, lon, data } = response;
     drawMap(lat, lon);
     Swal.close();
-  })
-    .fail(function () {
-      Swal.fire('Erro!', 'Coordenadas não encontradas.', 'error');
+  }).fail(function () {
+    Swal.fire('Erro!', 'Coordenadas não encontradas.', 'error');
 
-      $('input[name="city_result"]').val();
-      $('input[name="state_result"]').val();
-      // $('input[name="biome_result"]').val();
-    })
-    .always(function (response) {
-      console.log(response.data);
-    });
+    $('input[name="city_result"]').val();
+    $('input[name="state_result"]').val();
+    // $('input[name="biome_result"]').val();
+  });
 
   // Clear the city input
   $('input[name="coordinates"]').val('');
