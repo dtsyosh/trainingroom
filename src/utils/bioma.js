@@ -39,9 +39,12 @@ function isUTM(coordinates) {
 function fixDMS(coordinates) {
   let fixedDMS = coordinates.replace('S', 'S ');
   fixedDMS = fixedDMS.replace(' °', '°');
+  fixedDMS = fixedDMS.replace(' °', '°');
   // fixedDMS = fixedDMS.replace('°', '° ');
   // fixedDMS = fixedDMS.replace('º', 'º ');
   fixedDMS = fixedDMS.replace(' º', 'º');
+  fixedDMS = fixedDMS.replace(' º', 'º');
+  fixedDMS = fixedDMS.replace(" '", "'");
   fixedDMS = fixedDMS.replace(" '", "'");
 
   return fixedDMS;
