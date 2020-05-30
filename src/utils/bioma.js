@@ -32,10 +32,6 @@ const initials = {
   Tocantins: 'TO',
 };
 
-function isUTM(coordinates) {
-  return coordinates.split('S').length == 1 ? true : false;
-}
-
 function fixDMS(coordinates) {
   let fixedDMS = coordinates.replace('S', 'S ');
   fixedDMS = fixedDMS.replace(' °', '°');
@@ -50,27 +46,51 @@ function fixDMS(coordinates) {
   return fixedDMS;
 }
 
+function getType(coordinates) {
+    if(coordinates.includes('S'))
+        return "dms";
+    if(coordinates.includes('-'))
+        return "latlon";
+    return "utm";
+}
+
+function toLatLon(coordinates, type) {
+    let lat = 0;
+    let lon = 0;
+
+    switch(type) {
+        case "dms":
+            const result = parseDMS(fixDMS(coordinates));
+            lat = result.lat;
+            lon = result.lon;
+            break;
+
+        case "utm":
+            const coordinatesFormatted = coordinates
+                .split(' ')
+                .map((n) => parseInt(n));
+
+            const utm = '+proj=utm +zone=23 +south';
+            const wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84  +no_defs';
+            [lon, lat] = proj4(utm, wgs84, coordinatesFormatted);
+            break;
+        
+        default:
+            [lat, lon] = coordinates
+                .replace(',', ' ')
+                .trim()
+                .split(' ');
+            break;
+    }
+
+    return { lat, lon };
+}
+
 module.exports = {
   async getData(coordinates) {
     try {
-      let lat = null;
-      let lon = null;
-      if (isUTM(coordinates)) {
-        // parse utm
-
-        const coordinatesFormatted = coordinates
-          .split(' ')
-          .map((n) => parseInt(n));
-
-        const utm = '+proj=utm +zone=23 +south';
-        const wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84  +no_defs';
-        [lon, lat] = proj4(utm, wgs84, coordinatesFormatted);
-      } else {
-        const result = parseDMS(fixDMS(coordinates));
-        lat = result.lat;
-        lon = result.lon;
-      }
-
+      const { lat, lon } = toLatLon(coordinates, () => getType(coordinates));
+      console.log(lat, lon);
       const { data } = await axios.get(
         `https://us1.locationiq.com/v1/reverse.php?key=eb12c387025af0&lat=${lat}&lon=${lon}&format=json`
       );
