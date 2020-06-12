@@ -38,8 +38,8 @@ function fixDMS(coordinates) {
   fixedDMS = fixedDMS.replace(' °', '°');
   // fixedDMS = fixedDMS.replace('°', '° ');
   // fixedDMS = fixedDMS.replace('º', 'º ');
-  fixedDMS = fixedDMS.replace(' º', 'º');
-  fixedDMS = fixedDMS.replace(' º', 'º');
+  fixedDMS = fixedDMS.replace(' º', '°');
+  fixedDMS = fixedDMS.replace(' º', '°');
   fixedDMS = fixedDMS.replace(" '", "'");
   fixedDMS = fixedDMS.replace(" '", "'");
 
@@ -89,7 +89,7 @@ function toLatLon(coordinates, type) {
 module.exports = {
   async getData(coordinates) {
     try {
-      const { lat, lon } = toLatLon(coordinates, () => getType(coordinates));
+      const { lat, lon } = toLatLon(coordinates, getType(coordinates));
       console.log(lat, lon);
       const { data } = await axios.get(
         `https://us1.locationiq.com/v1/reverse.php?key=eb12c387025af0&lat=${lat}&lon=${lon}&format=json`
