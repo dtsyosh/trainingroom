@@ -25,6 +25,8 @@ function getData(coordinates) {
     $('#map').empty();
     const { lat, lon, data } = response;
     drawMap(lat, lon);
+    fillConversionField(lat, lon);
+
     Swal.close();
   }).fail(function () {
     Swal.fire('Erro!', 'Coordenadas não encontradas.', 'error');
@@ -87,4 +89,27 @@ function drawMap(lat, lon) {
 
     graphicsLayer.add(pointGraphic);
   });
+}
+
+function ConvertDEGToDMS(deg, lat) {
+  var absolute = Math.abs(deg);
+
+  var degrees = Math.floor(absolute);
+  var minutesNotTruncated = (absolute - degrees) * 60;
+  var minutes = Math.floor(minutesNotTruncated);
+  var seconds = ((minutesNotTruncated - minutes) * 60).toFixed(2);
+
+  if (lat) {
+    var direction = deg >= 0 ? 'N' : 'S';
+  } else {
+    var direction = deg >= 0 ? 'E' : 'W';
+  }
+
+  return degrees + '°' + minutes + "'" + direction;
+}
+
+function fillConversionField(x, y) {
+  const input = $('#toDmsConversion');
+
+  input.val(`${ConvertDEGToDMS(x, true)} ${ConvertDEGToDMS(y, false)}`);
 }

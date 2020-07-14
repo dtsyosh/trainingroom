@@ -47,56 +47,49 @@ function fixDMS(coordinates) {
 }
 
 function getType(coordinates) {
-    if(coordinates.includes('S'))
-        return "dms";
-    if(coordinates.includes('-'))
-        return "latlon";
-    return "utm";
+  if (coordinates.includes('S')) return 'dms';
+  if (coordinates.includes('-')) return 'latlon';
+  return 'utm';
 }
 
 function toLatLon(coordinates, type) {
-    let lat = 0;
-    let lon = 0;
+  let lat = 0;
+  let lon = 0;
 
-    switch(type) {
-        case "dms":
-            const result = parseDMS(fixDMS(coordinates));
-            lat = result.lat;
-            lon = result.lon;
-            break;
+  switch (type) {
+    case 'dms':
+      const result = parseDMS(fixDMS(coordinates));
+      lat = result.lat;
+      lon = result.lon;
+      break;
 
-        case "utm":
-            const coordinatesFormatted = coordinates
-                .split(' ')
-                .map((n) => parseInt(n));
+    case 'utm':
+      const coordinatesFormatted = coordinates
+        .split(' ')
+        .map((n) => parseInt(n));
 
-            const utm = '+proj=utm +zone=23 +south';
-            const wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84  +no_defs';
-            [lon, lat] = proj4(utm, wgs84, coordinatesFormatted);
-            break;
-        
-        default:
-            [lat, lon] = coordinates
-                .replace(',', ' ')
-                .trim()
-                .split(' ');
-            break;
-    }
+      const utm = '+proj=utm +zone=23 +south';
+      const wgs84 = '+proj=longlat +ellps=WGS84 +datum=WGS84  +no_defs';
+      [lon, lat] = proj4(utm, wgs84, coordinatesFormatted);
+      break;
 
-    return { lat, lon };
+    default:
+      [lon, lat] = coordinates.replace(',', ' ').trim().split(' ');
+      break;
+  }
+
+  return { lat, lon };
 }
 
 module.exports = {
   async getData(coordinates) {
     try {
       const { lat, lon } = toLatLon(coordinates, getType(coordinates));
-      console.log(lat, lon);
       const { data } = await axios.get(
         `https://us1.locationiq.com/v1/reverse.php?key=eb12c387025af0&lat=${lat}&lon=${lon}&format=json`
       );
       let { town, village, city, state } = data.address;
 
-      console.log(data);
       return {
         city: city || village || town,
         state: initials[state],
