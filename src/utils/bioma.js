@@ -42,6 +42,8 @@ function fixDMS(coordinates) {
   fixedDMS = fixedDMS.replace(' º', '°');
   fixedDMS = fixedDMS.replace(" '", "'");
   fixedDMS = fixedDMS.replace(" '", "'");
+  fixedDMS = fixedDMS.replace(/\`/g, "'");
+  console.log(coordinates, fixedDMS);
 
   return fixedDMS;
 }
